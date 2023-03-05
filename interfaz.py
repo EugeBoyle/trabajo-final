@@ -3,6 +3,8 @@ from entidades.alumno import Alumno
 from repositorios.alumno_repositorio import AlumnoRepositorio
 from entidades.curso import Curso
 from repositorios.curso_repositorio import CursoRepositorio
+from entidades.examen import Examen
+from repositorios.examen_repositorio import ExamenRepositorio
 
 opcion = ""
 while opcion != "99":
@@ -15,6 +17,7 @@ while opcion != "99":
     print("6. Modificar curso")
     print("7. Ver curso")
     print("8. Eliminar un curso")
+    print("9. Cargar examen")
     print("99. Salir")
     
     opcion = input("Ingrese una opción: ")
@@ -78,6 +81,15 @@ while opcion != "99":
         curso = cursoRepo.eliminar(id)
         print("Curso eliminado con exito")
 
+    elif opcion == "9":
+        nota = float(input("Ingrese una nota del 1 al 10: "))
+        idCurso = int(input("Ingrese el id del curso: "))
+        idAlumno = int(input("Ingrese el id del alumno: "))
+        
+        nuevoExamen = Examen(None, nota, idCurso, idAlumno)
+        examenRepo = ExamenRepositorio()
+        examenRepo.guardar(nuevoExamen)
+        print("Examen guardado con exito")
 
 
    
