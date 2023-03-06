@@ -1,4 +1,5 @@
 
+from repositorios.reporte_repositorio import ReporteRepositorio
 from entidades.alumno import Alumno
 from repositorios.alumno_repositorio import AlumnoRepositorio
 from entidades.curso import Curso
@@ -18,6 +19,7 @@ while opcion != "99":
     print("7. Ver curso")
     print("8. Eliminar un curso")
     print("9. Cargar examen")
+    print("10. Visualizar estadisticas")
     print("99. Salir")
     
     opcion = input("Ingrese una opción: ")
@@ -90,6 +92,14 @@ while opcion != "99":
         examenRepo = ExamenRepositorio()
         examenRepo.guardar(nuevoExamen)
         print("Examen guardado con exito")
+
+    elif opcion == "10":
+        idCurso = int(input("Ingrese el id del curso que le interese: "))
+        reporteRepo = ReporteRepositorio()
+        tabla = reporteRepo.obtenerTablaDeFrecuenciasPorCurso(idCurso)
+        for fila in tabla:
+            print("Valor: " + str(fila.valor) + " frecuencia: " + str(fila.frecuencia))
+
 
 
    
